@@ -4,7 +4,7 @@ import '../styles/global.css';
 
 // data source
 // replace temporary JSON placeholder API
-const source = 'https://jsonplaceholder.typicode.com/users';
+const source = 'https://opentdb.com/api.php?amount=10';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
@@ -21,7 +21,7 @@ const data = await res.json();
 		<!-- Normalize CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-		<title>Retreive and and display external API data with Astro</title>
+		<title>Trivia</title>
 	</head>
 	<body>
 		
@@ -35,19 +35,25 @@ const data = await res.json();
 		  
 				<!-- Your API Data -->
 				{
-					data.map( item =>
-					<li class="card-item">
-						<a href="#">
-							<figure class="card">
-							<img src="https://assets.codepen.io/16425/image-placeholder.png" alt="Placeholder">
-							<figcaption class="caption">
-								<h3 class="caption-title">{item.name}</h3>
-								<p>{item.company.catchPhrase}</p>
-							</figcaption>
-							</figure>
-						</a>
-					</li> 
-					)
+					
+		
+					data.results.map((item) => (
+						<li class="card">
+
+							<h2 class="card-title">{item.category}</h2>
+							<p class="card-text">{item.question}</p>
+							<button class="card-button" onclick="showAnswer()">Show Answer</button>
+							<p class="card-answer">{item.correct_answer}</p>
+
+
+
+
+						</li>
+						
+					))
+							
+						
+
 				}
 		  
 			</ul>
